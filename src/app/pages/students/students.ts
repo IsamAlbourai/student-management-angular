@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, ActivatedRoute } from '@angular/router';
@@ -14,7 +14,7 @@ import { StudentService } from '../../services/student.service';
 })
 export class Students implements OnInit {
 
-  students: Student[] = [];
+  students = signal<Student[]>([]);
 
   searchText = "";
 
@@ -26,19 +26,23 @@ export class Students implements OnInit {
   }
 
   ngOnInit(): void {
-    this.studentService.getStudents().subscribe(data => {
-      this.students = data;
-    });
-
     const course = this.route.snapshot.queryParamMap.get('course');
 
     if (course) {
       this.searchText = course;
     }
+
+    this.loadStudents();
   }
 
-  get filteredStudents(): Student[] {
-    return this.students.filter(student =>
+  loadStudents() {
+    this.studentService.getStudents().subscribe(data => {
+      this.students.set(data);
+    });
+  }
+
+  getFilteredStudents(): Student[] {
+    return this.students().filter(student =>
       student.name.toLowerCase().includes(this.searchText.toLowerCase()) ||
       student.course.toLowerCase().includes(this.searchText.toLowerCase())
     );
@@ -46,7 +50,7 @@ export class Students implements OnInit {
 
   deleteStudent(id: number | string) {
     this.studentService.deleteStudent(id).subscribe(() => {
-      this.students = this.students.filter(student => student.id !== id);
+      this.loadStudents();
     });
   }
 

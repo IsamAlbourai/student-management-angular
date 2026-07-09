@@ -1,6 +1,6 @@
 <h2>Students</h2>
 
-<p>Total students: {{ students.length }}</p>
+<p>Total students: {{ students().length }}</p>
 
 <p>Search</p>
 
@@ -24,7 +24,7 @@
   </thead>
 
   <tbody>
-  <tr *ngFor="let student of filteredStudents">
+  <tr *ngFor="let student of getFilteredStudents()">
     <td>{{ student.id }}</td>
     <td>{{ student.name }}</td>
     <td>{{ student.age }}</td>
