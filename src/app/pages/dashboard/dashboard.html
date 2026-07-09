@@ -3,3 +3,15 @@
 <p>Welcome to the Student Management System.</p>
 
 <p>This page will later show statistics and quick actions.</p>
+
+<h3>Quick Filters</h3>
+
+<a routerLink="/students" [queryParams]="{ course: 'Computer Science' }">
+  Computer Science Students
+</a>
+
+<br><br>
+
+<a routerLink="/students" [queryParams]="{ course: 'Information Technology' }">
+  Information Technology Students
+</a>

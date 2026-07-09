@@ -1,7 +1,48 @@
 <h2>Students</h2>
 
-<ul>
-  <li *ngFor="let student of students">
-    {{ student.name }} - {{ student.age }} - {{ student.course }}
-  </li>
-</ul>
+<p>Search</p>
+
+<input
+  type="text"
+  [(ngModel)]="searchText"
+  placeholder="Search by name or course">
+
+<br><br>
+
+<table border="1" cellpadding="10">
+
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Course</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let student of filteredStudents">
+    <td>{{ student.id }}</td>
+    <td>
+      <a [routerLink]="['/students', student.id]">
+        {{ student.name }}
+      </a>
+    </td>
+    <td>{{ student.age }}</td>
+    <td>{{ student.course }}</td>
+    <td>
+      <a [routerLink]="['/students', student.id, 'edit']">
+        Edit
+      </a>
+
+      |
+
+      <button (click)="deleteStudent(student.id)">
+        Delete
+      </button>
+    </td>
+  </tr>
+  </tbody>
+
+</table>

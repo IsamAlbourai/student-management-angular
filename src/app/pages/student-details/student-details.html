@@ -1,0 +1,23 @@
+<h2>Student Details</h2>
+
+<div *ngIf="student">
+
+  <p><strong>ID:</strong> {{ student.id }}</p>
+
+  <p><strong>Name:</strong> {{ student.name }}</p>
+
+  <p><strong>Age:</strong> {{ student.age }}</p>
+
+  <p><strong>Course:</strong> {{ student.course }}</p>
+
+</div>
+
+<div *ngIf="!student">
+
+  <p>Student not found.</p>
+
+</div>
+
+<br>
+
+<a routerLink="/students">Back to Students</a>
