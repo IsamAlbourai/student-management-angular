@@ -30,9 +30,17 @@
     <td>{{ student.age }}</td>
     <td>{{ student.course }}</td>
     <td>
-      <button (click)="deleteStudent(student.id)">
+
+      <button
+        [routerLink]="['/students', student.id, 'edit']">
+        Edit
+      </button>
+
+      <button
+        (click)="deleteStudent(student.id)">
         Delete
       </button>
+
     </td>
   </tr>
   </tbody>

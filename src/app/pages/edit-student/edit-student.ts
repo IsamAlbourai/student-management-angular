@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -13,13 +13,13 @@ import { StudentService } from '../../services/student.service';
 })
 export class EditStudent implements OnInit {
 
-  student: Student = {
+  student = signal<Student>({
     id: 0,
-    name: "",
+    name: '',
     age: 18,
-    course: "",
+    course: '',
     skills: []
-  };
+  });
 
   constructor(
     private route: ActivatedRoute,
@@ -30,15 +30,17 @@ export class EditStudent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = this.route.snapshot.paramMap.get('id');
 
-    this.studentService.getStudentById(id).subscribe(data => {
-      this.student = data;
-    });
+    if (id) {
+      this.studentService.getStudentById(id).subscribe(data => {
+        this.student.set(data);
+      });
+    }
   }
 
   updateStudent() {
-    this.studentService.updateStudent(this.student).subscribe(() => {
+    this.studentService.updateStudent(this.student()).subscribe(() => {
       this.router.navigate(['/students']);
     });
   }

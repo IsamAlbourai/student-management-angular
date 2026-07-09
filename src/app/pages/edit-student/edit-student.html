@@ -7,7 +7,8 @@
   <input
     type="text"
     name="name"
-    [(ngModel)]="student.name"
+    [ngModel]="student().name"
+    (ngModelChange)="student.update(s => ({ ...s, name: $event }))"
     required>
 
   <p>Age</p>
@@ -15,7 +16,8 @@
   <input
     type="number"
     name="age"
-    [(ngModel)]="student.age"
+    [ngModel]="student().age"
+    (ngModelChange)="student.update(s => ({ ...s, age: +$event }))"
     required>
 
   <p>Course</p>
@@ -23,7 +25,8 @@
   <input
     type="text"
     name="course"
-    [(ngModel)]="student.course"
+    [ngModel]="student().course"
+    (ngModelChange)="student.update(s => ({ ...s, course: $event }))"
     required>
 
   <br><br>
