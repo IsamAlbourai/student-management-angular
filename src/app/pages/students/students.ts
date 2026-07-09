@@ -26,7 +26,9 @@ export class Students implements OnInit {
   }
 
   ngOnInit(): void {
-    this.students = this.studentService.students;
+    this.studentService.getStudents().subscribe(data => {
+      this.students = data;
+    });
 
     const course = this.route.snapshot.queryParamMap.get('course');
 
@@ -42,9 +44,10 @@ export class Students implements OnInit {
     );
   }
 
-  deleteStudent(id: number) {
-    this.studentService.deleteStudent(id);
-    this.students = this.studentService.students;
+  deleteStudent(id: number | string) {
+    this.studentService.deleteStudent(id).subscribe(() => {
+      this.students = this.students.filter(student => student.id !== id);
+    });
   }
 
 }

@@ -1,0 +1,42 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "name": "Sam",
+      "age": 22,
+      "course": "Information Technology",
+      "skills": [
+        "Java",
+        "Angular"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "John",
+      "age": 20,
+      "course": "Computer Science",
+      "skills": [
+        "Python"
+      ]
+    },
+    {
+      "id": "iBSQJ6woZkw",
+      "name": "Isam",
+      "age": 27,
+      "course": "Software Engineering ",
+      "skills": [
+        "Java",
+        "MySQL",
+        "Spring Boot"
+      ]
+    },
+    {
+      "id": "Q7SsAg4jdsA",
+      "name": "Maria ",
+      "age": 18,
+      "course": "AI",
+      "skills": []
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

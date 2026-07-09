@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 import { Student } from '../models/student';
 
 @Injectable({
@@ -6,55 +9,30 @@ import { Student } from '../models/student';
 })
 export class StudentService {
 
-  students: Student[] = [
-    {
-      id: 1,
-      name: "Sam",
-      age: 22,
-      course: "Information Technology"
-    },
-    {
-      id: 2,
-      name: "John",
-      age: 20,
-      course: "Computer Science"
-    },
-    {
-      id: 3,
-      name: "Sarah",
-      age: 21,
-      course: "Cyber Security"
-    },
-    {
-      id: 4,
-      name: "Michael",
-      age: 23,
-      course: "Software Engineering"
-    }
-  ];
+  private apiUrl = 'http://localhost:3000/students';
 
-  addStudent(student: Student) {
-    const newId = this.students.length + 1;
+  constructor(private http: HttpClient) {
 
-    student.id = newId;
-
-    this.students.push(student);
   }
 
-  deleteStudent(id: number) {
-    this.students = this.students.filter(student => student.id !== id);
+  getStudents(): Observable<Student[]> {
+    return this.http.get<Student[]>(this.apiUrl);
   }
 
-  getStudentById(id: number) {
-    return this.students.find(student => student.id === id);
+  getStudentById(id: number | string): Observable<Student> {
+    return this.http.get<Student>(`${this.apiUrl}/${id}`);
   }
 
-  updateStudent(updatedStudent: Student) {
-    const index = this.students.findIndex(student => student.id === updatedStudent.id);
+  addStudent(student: Student): Observable<Student> {
+    return this.http.post<Student>(this.apiUrl, student);
+  }
 
-    if (index !== -1) {
-      this.students[index] = updatedStudent;
-    }
+  updateStudent(student: Student): Observable<Student> {
+    return this.http.put<Student>(`${this.apiUrl}/${student.id}`, student);
+  }
+
+  deleteStudent(id: number | string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
 }

@@ -17,7 +17,8 @@ export class EditStudent implements OnInit {
     id: 0,
     name: "",
     age: 18,
-    course: ""
+    course: "",
+    skills: []
   };
 
   constructor(
@@ -31,17 +32,15 @@ export class EditStudent implements OnInit {
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    const foundStudent = this.studentService.getStudentById(id);
-
-    if (foundStudent) {
-      this.student = { ...foundStudent };
-    }
+    this.studentService.getStudentById(id).subscribe(data => {
+      this.student = data;
+    });
   }
 
   updateStudent() {
-    this.studentService.updateStudent(this.student);
-
-    this.router.navigate(['/students']);
+    this.studentService.updateStudent(this.student).subscribe(() => {
+      this.router.navigate(['/students']);
+    });
   }
 
 }

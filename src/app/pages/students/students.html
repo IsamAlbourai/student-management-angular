@@ -1,5 +1,7 @@
 <h2>Students</h2>
 
+<p>Total students: {{ students.length }}</p>
+
 <p>Search</p>
 
 <input
@@ -24,26 +26,10 @@
   <tbody>
   <tr *ngFor="let student of filteredStudents">
     <td>{{ student.id }}</td>
-    <td>
-      <a [routerLink]="['/students', student.id]">
-        {{ student.name }}
-      </a>
-    </td>
+    <td>{{ student.name }}</td>
     <td>{{ student.age }}</td>
+    <td>{{ student.course }}</td>
     <td>
-      {{ student.course }}
-
-      <div *ngIf="student.skills && student.skills.length > 0">
-        Skills: {{ student.skills.join(', ') }}
-      </div>
-    </td>
-    <td>
-      <a [routerLink]="['/students', student.id, 'edit']">
-        Edit
-      </a>
-
-      |
-
       <button (click)="deleteStudent(student.id)">
         Delete
       </button>

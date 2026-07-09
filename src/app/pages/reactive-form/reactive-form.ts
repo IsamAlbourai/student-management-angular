@@ -60,9 +60,9 @@ export class ReactiveForm {
       skills: skills
     };
 
-    this.studentService.addStudent(newStudent);
-
-    this.router.navigate(['/students']);
+    this.studentService.addStudent(newStudent).subscribe(() => {
+      this.router.navigate(['/students']);
+    });
   }
 
 }
