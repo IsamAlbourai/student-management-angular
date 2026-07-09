@@ -18,6 +18,10 @@ export class Students implements OnInit {
 
   searchText = "";
 
+  isLoading = signal(false);
+
+  errorMessage = signal("");
+
   constructor(
     private studentService: StudentService,
     private route: ActivatedRoute
@@ -36,8 +40,18 @@ export class Students implements OnInit {
   }
 
   loadStudents() {
-    this.studentService.getStudents().subscribe(data => {
-      this.students.set(data);
+    this.isLoading.set(true);
+    this.errorMessage.set("");
+
+    this.studentService.getStudents().subscribe({
+      next: (data) => {
+        this.students.set(data);
+        this.isLoading.set(false);
+      },
+      error: () => {
+        this.errorMessage.set("Failed to load students. Please check if the API is running.");
+        this.isLoading.set(false);
+      }
     });
   }
 
@@ -49,8 +63,13 @@ export class Students implements OnInit {
   }
 
   deleteStudent(id: number | string) {
-    this.studentService.deleteStudent(id).subscribe(() => {
-      this.loadStudents();
+    this.studentService.deleteStudent(id).subscribe({
+      next: () => {
+        this.loadStudents();
+      },
+      error: () => {
+        this.errorMessage.set("Failed to delete student.");
+      }
     });
   }
 

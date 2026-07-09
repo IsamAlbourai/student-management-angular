@@ -29,6 +29,15 @@
         "MySQL",
         "Spring Boot"
       ]
+    },
+    {
+      "id": "KICqoiKs6EA",
+      "name": "Maria",
+      "age": 20,
+      "course": "AI",
+      "skills": [
+        "Python"
+      ]
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
