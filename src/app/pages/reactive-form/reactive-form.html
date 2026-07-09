@@ -1,0 +1,68 @@
+<h2>Add Student</h2>
+
+<form [formGroup]="studentForm" (ngSubmit)="saveStudent()">
+
+  <p>Student Name</p>
+
+  <input type="text" formControlName="name">
+
+  <p *ngIf="studentForm.get('name')?.hasError('required') && studentForm.get('name')?.touched">
+    Name is required.
+  </p>
+
+  <p *ngIf="studentForm.get('name')?.hasError('minlength') && studentForm.get('name')?.touched">
+    Name must contain at least 3 characters.
+  </p>
+
+  <p *ngIf="studentForm.get('name')?.hasError('invalidName') && studentForm.get('name')?.touched">
+    Name must contain letters only.
+  </p>
+
+  <p>Age</p>
+
+  <input type="number" formControlName="age">
+
+  <p *ngIf="studentForm.get('age')?.invalid && studentForm.get('age')?.touched">
+    Age is required and must be 18 or above.
+  </p>
+
+  <p>Course</p>
+
+  <input type="text" formControlName="course">
+
+  <p *ngIf="studentForm.get('course')?.invalid && studentForm.get('course')?.touched">
+    Course is required.
+  </p>
+
+  <h3>Skills</h3>
+
+  <div formArrayName="skills">
+
+    <div *ngFor="let skill of skills.controls; let i = index">
+
+      <input
+        type="text"
+        [formControlName]="i"
+        placeholder="Enter skill">
+
+      <button type="button" (click)="removeSkill(i)">
+        Remove
+      </button>
+
+      <br><br>
+
+    </div>
+
+  </div>
+
+  <button type="button" (click)="addSkill()">
+    Add Skill
+  </button>
+
+  <br><br>
+
+  <button type="submit" [disabled]="studentForm.invalid">
+    Save Student
+  </button>
+
+</form>

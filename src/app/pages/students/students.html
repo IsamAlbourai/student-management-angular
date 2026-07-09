@@ -30,7 +30,13 @@
       </a>
     </td>
     <td>{{ student.age }}</td>
-    <td>{{ student.course }}</td>
+    <td>
+      {{ student.course }}
+
+      <div *ngIf="student.skills && student.skills.length > 0">
+        Skills: {{ student.skills.join(', ') }}
+      </div>
+    </td>
     <td>
       <a [routerLink]="['/students', student.id, 'edit']">
         Edit

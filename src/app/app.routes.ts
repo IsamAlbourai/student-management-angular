@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-
+import { authGuard } from './guards/auth-guard';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { Students } from './pages/students/students';
-import { About } from './pages/about/about';
-import { AddStudent } from './pages/add-student/add-student';
+
 import { StudentDetails } from './pages/student-details/student-details';
 import { EditStudent } from './pages/edit-student/edit-student';
+import { ReactiveForm } from './pages/reactive-form/reactive-form';
 
 export const routes: Routes = [
   {
@@ -31,11 +31,8 @@ export const routes: Routes = [
   },
   {
     path: 'add-student',
-    component: AddStudent
-  },
-  {
-    path: 'about',
-    component: About
+    component: ReactiveForm,
+    canActivate: [authGuard]
   },
   {
     path: '**',
