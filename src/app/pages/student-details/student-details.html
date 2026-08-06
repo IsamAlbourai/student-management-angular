@@ -1,23 +1,24 @@
 <h2>Student Details</h2>
 
-<div *ngIf="student">
+@if (isLoading()) {
 
-  <p><strong>ID:</strong> {{ student.id }}</p>
+  <p>Loading student details...</p>
 
-  <p><strong>Name:</strong> {{ student.name }}</p>
+} @else if (errorMessage()) {
 
-  <p><strong>Age:</strong> {{ student.age }}</p>
+  <p>{{ errorMessage() }}</p>
 
-  <p><strong>Course:</strong> {{ student.course }}</p>
+} @else if (student(); as selectedStudent) {
 
-</div>
+  <app-student-card
+    [student]="selectedStudent"
+    (deleteRequested)="deleteStudent($event)">
+  </app-student-card>
 
-<div *ngIf="!student">
-
-  <p>Student not found.</p>
-
-</div>
+}
 
 <br>
 
-<a routerLink="/students">Back to Students</a>
+<a routerLink="/students">
+  Back to Students
+</a>

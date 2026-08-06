@@ -1,12 +1,12 @@
 <h2>Students</h2>
 
-<div *ngIf="isLoading()">
+@if (isLoading()) {
   <p>Loading students, please wait...</p>
-</div>
+}
 
-<p *ngIf="errorMessage()">
-  {{ errorMessage() }}
-</p>
+@if (errorMessage()) {
+  <p>{{ errorMessage() }}</p>
+}
 
 <p>Total students: {{ students().length }}</p>
 
@@ -19,7 +19,7 @@
 
 <br><br>
 
-<table border="1" cellpadding="10" *ngIf="!isLoading() && !errorMessage()">
+<table border="1" cellpadding="10">
 
   <thead>
   <tr>
@@ -33,9 +33,17 @@
 
   <tbody>
   <tr *ngFor="let student of getFilteredStudents()">
+
     <td>{{ student.id }}</td>
-    <td>{{ student.name }}</td>
+
+    <td>
+      <a [routerLink]="['/students', student.id]">
+        {{ student.name }}
+      </a>
+    </td>
+
     <td>{{ student.age }}</td>
+
     <td>
       {{ student.course }}
 
@@ -43,6 +51,7 @@
         Skills: {{ student.skills.join(', ') }}
       </div>
     </td>
+
     <td>
       <button [routerLink]="['/students', student.id, 'edit']">
         Edit
@@ -52,6 +61,7 @@
         Delete
       </button>
     </td>
+
   </tr>
   </tbody>
 
