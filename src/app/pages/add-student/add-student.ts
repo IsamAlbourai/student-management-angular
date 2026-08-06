@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -7,36 +8,38 @@ import { StudentService } from '../../services/student.service';
 
 @Component({
   selector: 'app-add-student',
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './add-student.html',
-  styleUrl: './add-student.css'
+  styleUrl: './add-student.css',
 })
 export class AddStudent {
-
-  studentName = "";
+  studentName = '';
 
   studentAge = 18;
 
-  studentCourse = "";
+  studentCourse = '';
 
   constructor(
     private studentService: StudentService,
-    private router: Router
-  ) {
+    private router: Router,
+  ) {}
 
-  }
-
-  saveStudent() {
+  saveStudent(): void {
     const newStudent: Student = {
-      id: 0,
+      id: '',
       name: this.studentName,
       age: this.studentAge,
-      course: this.studentCourse
+      course: this.studentCourse,
+      skills: [],
     };
 
-    this.studentService.addStudent(newStudent);
-
-    this.router.navigate(['/students']);
+    this.studentService.addStudent(newStudent).subscribe({
+      next: () => {
+        this.router.navigate(['/students']);
+      },
+      error: () => {
+        alert('Failed to add the student.');
+      },
+    });
   }
-
 }
