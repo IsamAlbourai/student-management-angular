@@ -1,31 +1,76 @@
-<h2>Dashboard</h2>
+<section class="dashboard-page">
 
-<p>Welcome to the Student Management System.</p>
+  <h2>Dashboard</h2>
 
-@if (students$ | async; as students) {
+  <app-page-card>
 
-  <p>
-    <strong>Total Students:</strong> {{ students.length }}
-  </p>
+    <span card-title>
+      Student Overview
+    </span>
 
-} @else {
+    <p>
+      Welcome to the Student Management System.
+    </p>
 
-  <p>Loading dashboard...</p>
+    @if (students$ | async; as students) {
 
-}
+      <p>
+        <strong>Total Students:</strong>
+        {{ students.length }}
+      </p>
 
-<h3>Quick Filters</h3>
+    } @else {
 
-<a
-  routerLink="/students"
-  [queryParams]="{ course: 'Computer Science' }">
-  Computer Science Students
-</a>
+      <p>Loading dashboard...</p>
 
-<br><br>
+    }
 
-<a
-  routerLink="/students"
-  [queryParams]="{ course: 'Information Technology' }">
-  Information Technology Students
-</a>
+    <div card-actions>
+
+      <a
+        mat-stroked-button
+        routerLink="/students">
+        View Students
+      </a>
+
+      <a
+        mat-flat-button
+        routerLink="/add-student">
+        Add Student
+      </a>
+
+    </div>
+
+  </app-page-card>
+
+  <app-page-card>
+
+    <span card-title>
+      Quick Filters
+    </span>
+
+    <p>
+      View students from a specific course.
+    </p>
+
+    <div card-actions>
+
+      <a
+        mat-stroked-button
+        routerLink="/students"
+        [queryParams]="{ course: 'Computer Science' }">
+        Computer Science
+      </a>
+
+      <a
+        mat-stroked-button
+        routerLink="/students"
+        [queryParams]="{ course: 'Information Technology' }">
+        Information Technology
+      </a>
+
+    </div>
+
+  </app-page-card>
+
+</section>

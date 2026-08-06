@@ -1,5 +1,68 @@
-button {
-  margin-right: 8px;
-  padding: 5px 10px;
-  cursor: pointer;
+.students-page {
+  width: 100%;
+}
+
+.page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.page-heading h2 {
+  margin-bottom: 6px;
+}
+
+.page-heading p {
+  margin: 0;
+}
+
+.search-section {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-bottom: 24px;
+}
+
+.search-section label {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.search-section input {
+  padding: 11px;
+  font-size: 16px;
+  border: 1px solid #999999;
+  border-radius: 4px;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  font-weight: 600;
+}
+
+td,
+th {
+  padding: 16px;
+}
+
+.skills {
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.error-message {
+  margin-bottom: 20px;
 }

@@ -22,21 +22,12 @@
     {
       "id": "iBSQJ6woZkw",
       "name": "Isam",
-      "age": 27,
+      "age": 28,
       "course": "Computer Science ",
       "skills": [
         "Java",
         "MySQL",
         "Spring Boot"
-      ]
-    },
-    {
-      "id": "KICqoiKs6EA",
-      "name": "Maria",
-      "age": 20,
-      "course": "AI",
-      "skills": [
-        "Python"
       ]
     }
   ],
