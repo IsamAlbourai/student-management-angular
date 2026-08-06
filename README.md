@@ -1,59 +1,104 @@
-# StudentManagement
+# Student Management System
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.5.
+A modern Student Management System built with Angular 22.
 
-## Development server
+The application allows users to view, add, edit, search, inspect, and delete student records. It uses JSON Server as a temporary REST API and Angular Material for the user interface.
 
-To start a local development server, run:
+## Features
 
-```bash
-ng serve
-```
+- View all students
+- Search students by name or course
+- View individual student details
+- Add new students
+- Edit existing students
+- Delete students with a confirmation dialog
+- Add multiple skills using a dynamic FormArray
+- Form validation and custom validators
+- Loading and error messages
+- Route guards
+- Route parameters and query parameters
+- Lazy-loaded About page
+- Responsive Angular Material interface
+- Unit and HTTP testing
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Technologies Used
 
-## Code scaffolding
+- Angular 22
+- TypeScript
+- Angular Material
+- Reactive Forms
+- Template-Driven Forms
+- RxJS
+- HttpClient
+- JSON Server
+- Vitest
+- Git and GitHub
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Angular Concepts Demonstrated
 
-```bash
-ng generate component component-name
-```
+- Standalone components
+- Components and templates
+- Data binding
+- Built-in and custom directives
+- Built-in pipes and async pipe
+- Services and dependency injection
+- RxJS Observables
+- Lifecycle hooks
+- Angular Router
+- Route parameters
+- Query parameters
+- Lazy loading
+- Route guards
+- Template-driven forms
+- Reactive forms
+- FormGroup
+- FormControl
+- FormBuilder
+- FormArray
+- Built-in and custom validators
+- HTTP GET, POST, PUT, and DELETE
+- HTTP headers
+- HTTP interceptors
+- Error handling
+- Signals
+- Input and Output decorators
+- EventEmitter
+- ViewChild
+- Template reference variables
+- Content projection
+- Angular Material components
+- Component and service testing
+- Mock HTTP testing
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Project Structure
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```text
+src/app
+├── components
+│   ├── confirm-dialog
+│   ├── page-card
+│   └── student-card
+├── directives
+│   └── invalid-field
+├── guards
+│   └── auth-guard
+├── interceptors
+│   └── auth-interceptor
+├── models
+│   └── student
+├── pages
+│   ├── about
+│   ├── add-student
+│   ├── dashboard
+│   ├── edit-student
+│   ├── reactive-form
+│   ├── student-details
+│   └── students
+├── services
+│   └── student.service
+├── validators
+│   └── name.validator
+├── app.config.ts
+├── app.routes.ts
+├── app.html
+└── app.ts
